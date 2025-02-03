@@ -1,30 +1,45 @@
-```markdown
 # Quotes Service
 
-A serverless service that manages inspirational quotes using AWS Lambda and DynamoDB.
+A Serverless AWS Web Application that fetches and stores inspirational quotes using Lambda functions and DynamoDB
 
 ## Features
 
-- Fetch random quotes from zenquotes.io
+- Fetch random quotes from zenquotes.io API
 - Store quotes in DynamoDB
-- Retrieve random quotes from the database
+- Random quote retrieval from DynamoDB
+- Automated testing with moto
+- Infrastructure as Code with Terraform
 
 ## Prerequisites
 
 - AWS CLI configured
-- Python 3.9+
+- Python 3.12+
 - Terraform
-- Make (optional)
+- Windows PowerShell
+
+## Project Structure
+Copyquotes-service/
+├── src/
+│   └── functions/
+│       ├── get_quote/
+│       │   └── get_quote_lambda_function.py
+│       └── put_quote/
+│           └── put_quote_lambda_function.py
+├── infrastructure/
+│   └── main.tf
+├── tests/
+│   └── test_functions.py
+└── make.bat
 
 ## Setup
 
 1. Clone the repository
 ```bash
-git clone 
+git clone https://github.com/Saketh1702/quotes-service.git
 cd quotes-service
 ```
 
-2. Create and activate virtual environment
+2. Install dependencies
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: .\venv\Scripts\activate
@@ -32,34 +47,32 @@ source venv/bin/activate  # On Windows: .\venv\Scripts\activate
 
 3. Install dependencies
 ```bash
-pip install -r requirements.txt
+.\make.bat setup
 ```
 
-4. Copy environment variables
+4. Run tests
 ```bash
-cp .env.example .env
+.\make.bat test
 ```
 
-5. Deploy infrastructure
+5. Deploy to AWS
 ```bash
-cd infrastructure
-terraform init
-terraform plan
-terraform apply
+.\make.bat deploy
 ```
 
-## Testing
-
-Run the tests using pytest:
-```bash
-pytest tests/
-```
-
-## Infrastructure
-
-The service uses the following AWS resources:
-
-- DynamoDB table for storing quotes
-- Two Lambda functions (get_quote and put_quote)
+## AWS Resources Created
+- DynamoDB table for quote storage
+- Lambda functions:
+-- get-quote: Retrieves random quote
+-- put-quote: Stores new quotes
+- API Gateway endpoints
 - IAM roles and policies
-- API Gateway (optional)
+- CloudWatch logging
+  
+## Test Endpoints
+### After deployment
+```
+curl -X GET https://<api-id>.execute-api.<region>.amazonaws.com/<stage>/quotes
+curl -X POST https://<api-id>.execute-api.<region>.amazonaws.com/<stage>/quotes
+```
+
