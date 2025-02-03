@@ -23,7 +23,8 @@ https://github.com/user-attachments/assets/a940d864-d0b0-4943-bfde-63117d4ea411
 - Windows PowerShell
 
 ## Project Structure
-Copyquotes-service/
+```bash
+quotes-service/
 ├── src/
 │   └── functions/
 │       ├── get_quote/
@@ -35,7 +36,7 @@ Copyquotes-service/
 ├── tests/
 │   └── test_functions.py
 └── make.bat
-
+```
 ## Setup
 
 1. Clone the repository
@@ -68,8 +69,8 @@ source venv/bin/activate  # On Windows: .\venv\Scripts\activate
 ## AWS Resources Created
 - DynamoDB table for quote storage
 - Lambda functions:
--- get-quote: Retrieves random quote
--- put-quote: Stores new quotes
+  - get-quote: Retrieves random quote
+  - put-quote: Stores new quotes
 - API Gateway endpoints
 - IAM roles and policies
 - CloudWatch logging
