@@ -2,6 +2,11 @@
 
 A Serverless AWS Web Application that fetches and stores inspirational quotes using Lambda functions and DynamoDB
 
+
+# Architecture Diagram
+https://github.com/user-attachments/assets/a940d864-d0b0-4943-bfde-63117d4ea411
+
+
 ## Features
 
 - Fetch random quotes from zenquotes.io API
